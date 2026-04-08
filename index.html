@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Consultoria financeira premium para famílias com renda acima de R$15 mil. Diagnóstico comportamental, proteção patrimonial e plano estratégico personalizado.">
+<title>Rafael Garbelini · Consultoria Financeira</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  /* ── Reset & Base ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:        #04141f;
+    --bg2:       #071e2e;
+    --bg3:       #0a2235;
+    --accent:    #df6417;
+    --accent2:   #f07a30;
+    --navy:      #0a3871;
+    --navy2:     #0d4a96;
+    --text:      #e8e4dc;
+    --text2:     #9fa8a3;
+    --text3:     #6b7470;
+    --border:    rgba(255,255,255,0.07);
+    --border2:   rgba(223,100,23,0.25);
+    --radius:    4px;
+    --radius-lg: 8px;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1,h2,h3,h4 { font-family: 'Outfit', sans-serif; font-weight: 500; line-height: 1.25; letter-spacing: -0.02em; }
+  a { color: var(--accent); text-decoration: none; }
+  img { max-width: 100%; }
+  ::selection { background: var(--accent); color: #fff; }
+
+  /* ── Utility ── */
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  .container--narrow { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  .accent { color: var(--accent); }
+  .muted { color: var(--text2); }
+
+  /* ── Nav ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 18px 0;
+    border-bottom: 1px solid transparent;
+    transition: background 0.3s, border-color 0.3s, padding 0.3s;
+  }
+  nav.scrolled {
+    background: rgba(4,20,31,0.95);
+    backdrop-filter: blur(12px);
+    border-color: var(--border);
+    padding: 12px 0;
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 1080px; margin: 0 auto; padding: 0 24px;
+  }
+  .nav-logo {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px; font-weight: 500; letter-spacing: 0.05em;
+    color: var(--text); text-transform: uppercase;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-cta {
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--accent); border: 1px solid var(--border2);
+    padding: 9px 20px; border-radius: var(--radius);
+    transition: background 0.2s, color 0.2s;
+  }
+  .nav-cta:hover { background: var(--accent); color: #fff; }
+
+  /* ── Hero ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 140px 0 100px;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+  .hero-bg-line {
+    position: absolute; top: 0; right: 15%;
+    width: 1px; height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(223,100,23,0.15) 30%, rgba(223,100,23,0.08) 70%, transparent);
+  }
+  .hero-bg-circle {
+    position: absolute; top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(10,56,113,0.35) 0%, transparent 65%);
+  }
+  .hero-bg-dot {
+    position: absolute; bottom: 15%; left: 5%;
+    width: 300px; height: 300px;
+    background: radial-gradient(ellipse at center, rgba(223,100,23,0.06) 0%, transparent 70%);
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 32px;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 32px; height: 1px; background: var(--accent);
+  }
+  .hero h1 {
+    font-size: clamp(38px, 6vw, 72px);
+    font-weight: 300;
+    max-width: 820px;
+    margin-bottom: 28px;
+    color: var(--text);
+  }
+  .hero h1 strong {
+    font-weight: 600;
+    color: #fff;
+  }
+  .hero-sub {
+    font-size: clamp(16px, 2vw, 19px);
+    color: var(--text2);
+    max-width: 580px;
+    margin-bottom: 52px;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .btn-primary {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px; font-weight: 500; letter-spacing: 0.05em;
+    background: var(--accent); color: #fff;
+    padding: 16px 36px; border-radius: var(--radius);
+    border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-secondary {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px; font-weight: 400; letter-spacing: 0.03em;
+    color: var(--text2);
+    padding: 16px 24px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer; background: transparent;
+    transition: color 0.2s, border-color 0.2s;
+    display: inline-block;
+  }
+  .btn-secondary:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+  .hero-scroll {
+    position: absolute; bottom: 40px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: var(--text3);
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    font-family: 'Outfit', sans-serif;
+    animation: bounce 2.5s ease-in-out infinite;
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+  .hero-scroll svg { width: 16px; height: 16px; stroke: var(--text3); fill: none; stroke-width: 1.5; }
+
+  /* ── Section base ── */
+  section { padding: 100px 0; }
+  .section-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+  .section-title {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 300; color: #fff;
+    margin-bottom: 20px;
+  }
+  .section-title strong { font-weight: 600; }
+  .section-sub {
+    font-size: 17px; color: var(--text2); line-height: 1.75;
+    font-weight: 300; max-width: 600px;
+    margin-bottom: 56px;
+  }
+  .divider {
+    width: 100%; height: 1px;
+    background: var(--border);
+    margin: 0;
+  }
+
+  /* ── Espelho / Perfis ── */
+  .perfis { padding: 100px 0; background: var(--bg2); }
+  .perfis-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 48px;
+  }
+  .perfil-card {
+    background: var(--bg2);
+    padding: 40px 36px;
+    position: relative;
+  }
+  .perfil-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    opacity: 0.5;
+  }
+  .perfil-tag {
+    font-family: 'Outfit', sans-serif;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent2); margin-bottom: 20px; display: block;
+  }
+  .perfil-card h3 {
+    font-size: 22px; font-weight: 500; color: #fff;
+    margin-bottom: 14px;
+  }
+  .perfil-card p { font-size: 15px; color: var(--text2); line-height: 1.75; font-weight: 300; }
+  .behav-insight {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-lg);
+    padding: 32px 36px;
+  }
+  .behav-insight-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 14px; display: block;
+  }
+  .behav-insight p {
+    font-size: 16px; color: var(--text2); line-height: 1.8; font-weight: 300;
+  }
+  .behav-insight strong { color: var(--text); font-weight: 400; }
+
+  /* ── Para quem é ── */
+  .para-quem { padding: 100px 0; }
+  .checklist { display: flex; flex-direction: column; gap: 0; }
+  .checklist-item {
+    display: flex; align-items: flex-start; gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .checklist-item:last-child { border-bottom: none; }
+  .check-icon {
+    width: 22px; height: 22px; min-width: 22px;
+    margin-top: 2px;
+    border: 1px solid var(--border2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .check-icon svg { width: 10px; height: 10px; stroke: var(--accent); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  .checklist-item p { font-size: 16px; color: var(--text2); line-height: 1.7; font-weight: 300; }
+  .checklist-item strong { color: var(--text); font-weight: 400; }
+
+  /* ── Como funciona ── */
+  .como-funciona { padding: 100px 0; background: var(--bg2); }
+  .etapas { display: flex; flex-direction: column; gap: 0; margin-top: 56px; }
+  .etapa {
+    display: grid; grid-template-columns: 72px 1fr;
+    gap: 32px; padding: 40px 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .etapa:last-child { border-bottom: none; }
+  .etapa-num-wrap { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .etapa-num {
+    width: 44px; height: 44px;
+    border: 1px solid var(--border2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px; font-weight: 500; color: var(--accent);
+    flex-shrink: 0;
+  }
+  .etapa-line {
+    flex: 1; width: 1px;
+    background: var(--border);
+    margin-top: 12px;
+  }
+  .etapa:last-child .etapa-line { display: none; }
+  .etapa-content { padding-top: 10px; }
+  .etapa-content h3 {
+    font-size: 20px; font-weight: 500; color: #fff;
+    margin-bottom: 10px;
+  }
+  .etapa-content p { font-size: 15px; color: var(--text2); line-height: 1.75; font-weight: 300; }
+
+  /* ── Você vai sair sabendo ── */
+  .entregas { padding: 100px 0; }
+  .entregas-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .entrega-card {
+    background: var(--bg);
+    padding: 36px 32px;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .entrega-card:hover { background: var(--bg3); }
+  .entrega-num {
+    font-family: 'Outfit', sans-serif;
+    font-size: 42px; font-weight: 300;
+    color: rgba(223,100,23,0.15);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .entrega-card h3 {
+    font-size: 17px; font-weight: 500; color: #fff;
+    margin-bottom: 8px;
+  }
+  .entrega-card p { font-size: 14px; color: var(--text2); line-height: 1.7; font-weight: 300; }
+
+  /* ── Bio ── */
+  .bio { padding: 100px 0; background: var(--bg2); }
+  .bio-inner {
+    display: grid; grid-template-columns: 1fr 480px;
+    gap: 80px; align-items: center;
+  }
+  .bio-avatar-wrap { position: relative; }
+  .bio-avatar-frame {
+    width: 100%; padding-top: 110%;
+    background: var(--bg3);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .bio-avatar-initials {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Outfit', sans-serif;
+    font-size: 80px; font-weight: 300;
+    color: rgba(223,100,23,0.2);
+    letter-spacing: -0.04em;
+  }
+  .bio-avatar-accent {
+    position: absolute; bottom: -1px; left: -1px; right: -1px;
+    height: 3px; background: var(--accent); border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  }
+  .bio-badge {
+    position: absolute; top: 20px; right: -16px;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    white-space: nowrap;
+  }
+  .bio-content { }
+  .bio-content .section-label { margin-bottom: 12px; }
+  .bio-nome {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 300; color: #fff;
+    margin-bottom: 6px;
+  }
+  .bio-cargo {
+    font-size: 13px; color: var(--accent);
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .bio-text {
+    font-size: 16px; color: var(--text2); line-height: 1.8;
+    font-weight: 300; margin-bottom: 32px;
+  }
+  .bio-text strong { color: var(--text); font-weight: 400; }
+  .bio-creds {
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .bio-cred {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text2);
+    border: 1px solid var(--border);
+    padding: 7px 14px; border-radius: var(--radius);
+  }
+
+  /* ── CTA / Formulário ── */
+  .cta-section { padding: 100px 0; position: relative; overflow: hidden; }
+  .cta-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 60% 50%, rgba(10,56,113,0.3) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .cta-inner {
+    display: grid; grid-template-columns: 1fr 460px;
+    gap: 80px; align-items: start;
+  }
+  .cta-text { position: relative; }
+  .cta-text h2 {
+    font-size: clamp(30px, 4vw, 48px);
+    font-weight: 300; color: #fff;
+    margin-bottom: 20px;
+  }
+  .cta-text h2 strong { font-weight: 600; }
+  .cta-text p { font-size: 16px; color: var(--text2); line-height: 1.8; font-weight: 300; margin-bottom: 36px; }
+  .cta-aviso {
+    background: rgba(223,100,23,0.08);
+    border: 1px solid var(--border2);
+    border-left: 3px solid var(--accent);
+    padding: 20px 24px; border-radius: 0 var(--radius) var(--radius) 0;
+  }
+  .cta-aviso p { font-size: 14px; color: var(--text2); line-height: 1.7; margin: 0; font-weight: 300; }
+  .cta-aviso strong { color: var(--text); font-weight: 400; }
+
+  /* Form */
+  .form-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 40px 36px;
+    position: sticky; top: 100px;
+  }
+  .form-card h3 {
+    font-size: 20px; font-weight: 500; color: #fff;
+    margin-bottom: 6px;
+  }
+  .form-card .form-sub {
+    font-size: 13px; color: var(--text3); margin-bottom: 28px; line-height: 1.5;
+  }
+  .form-group { margin-bottom: 16px; }
+  .form-group label {
+    display: block;
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text2); margin-bottom: 8px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 13px 16px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 15px; color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: var(--text3); }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--accent); }
+  .form-group select { cursor: pointer; }
+  .form-group select option { background: var(--bg2); }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+  .form-submit {
+    width: 100%;
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px; font-weight: 500; letter-spacing: 0.04em;
+    background: var(--accent); color: #fff;
+    border: none; border-radius: var(--radius);
+    padding: 16px; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    margin-top: 8px;
+  }
+  .form-submit:hover { background: var(--accent2); transform: translateY(-1px); }
+  .form-lgpd {
+    font-size: 11px; color: var(--text3);
+    line-height: 1.6; margin-top: 14px; text-align: center;
+  }
+  .form-divider {
+    display: flex; align-items: center; gap: 12px;
+    margin: 20px 0;
+  }
+  .form-divider span { font-size: 12px; color: var(--text3); white-space: nowrap; }
+  .form-divider::before, .form-divider::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+  .btn-whatsapp {
+    width: 100%;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px; font-weight: 500;
+    background: transparent; color: var(--text2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px; cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+  }
+  .btn-whatsapp:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+  .btn-whatsapp svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+  /* ── Footer ── */
+  footer {
+    padding: 48px 0;
+    border-top: 1px solid var(--border);
+  }
+  .footer-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-logo {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--text2);
+  }
+  .footer-logo span { color: var(--accent); }
+  .footer-copy {
+    font-size: 13px; color: var(--text3);
+  }
+
+  /* ── Animations ── */
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .bio-inner { grid-template-columns: 1fr; gap: 48px; }
+    .bio-avatar-wrap { max-width: 280px; }
+    .bio-badge { right: 0; top: 16px; }
+    .cta-inner { grid-template-columns: 1fr; gap: 48px; }
+    .form-card { position: static; }
+    .perfis-grid { grid-template-columns: 1fr; }
+    .entregas-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 72px 0; }
+    .hero { padding: 120px 0 80px; }
+    .hero h1 { letter-spacing: -0.01em; }
+    .hero-actions { flex-direction: column; align-items: flex-start; }
+    .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+    .etapa { grid-template-columns: 48px 1fr; gap: 16px; }
+    .form-card { padding: 28px 20px; }
+    .perfil-card { padding: 28px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav id="nav">
+  <div class="nav-inner">
+    <span class="nav-logo">Rafael <span>Garbelini</span></span>
+    <a href="#agendar" class="nav-cta">Agendar reunião</a>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<header class="hero">
+  <div class="hero-bg">
+    <div class="hero-bg-circle"></div>
+    <div class="hero-bg-line"></div>
+    <div class="hero-bg-dot"></div>
+  </div>
+  <div class="container">
+    <p class="hero-eyebrow reveal">Consultoria financeira comportamental</p>
+    <h1 class="reveal reveal-delay-1">
+      Você ganha bem.<br>
+      Mas o dinheiro some —<br>
+      ou sobra e fica <strong>parado sem trabalhar por você.</strong>
+    </h1>
+    <p class="hero-sub reveal reveal-delay-2">
+      Isso não é falta de disciplina. É falta de um sistema feito para quem ganha na sua escala. Famílias com renda acima de R$ 15 mil têm desafios que planilha e app não resolvem.
+    </p>
+    <div class="hero-actions reveal reveal-delay-3">
+      <a href="#agendar" class="btn-primary">Quero agendar minha reunião gratuita</a>
+      <a href="#como-funciona" class="btn-secondary">Como funciona</a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <svg viewBox="0 0 16 16"><polyline points="2,5 8,11 14,5"/></svg>
+  </div>
+</header>
+
+<div class="divider"></div>
+
+<!-- ── Espelho Comportamental ── -->
+<section class="perfis" id="perfis">
+  <div class="container">
+    <p class="section-label reveal">Você se reconhece aqui?</p>
+    <h2 class="section-title reveal reveal-delay-1">Dois perfis. <strong>A mesma raiz.</strong></h2>
+    <p class="section-sub reveal reveal-delay-2">A maioria das famílias de alta renda vive em um desses dois cenários — e os dois têm solução.</p>
+    <div class="perfis-grid reveal reveal-delay-2">
+      <div class="perfil-card">
+        <span class="perfil-tag">Perfil A</span>
+        <h3>O dinheiro some</h3>
+        <p>Você ganha bem, paga as contas, vive confortavelmente — mas no fim do mês não sobra nada ou quase nada. A reserva não cresce, o futuro da família pesa, e você não consegue entender exatamente por quê.</p>
+      </div>
+      <div class="perfil-card">
+        <span class="perfil-tag">Perfil B</span>
+        <h3>O dinheiro está parado</h3>
+        <p>Você consegue guardar, mas não sabe o que fazer com o que sobra. Deixa na poupança, em CDB genérico, ou pulverizado sem critério — e sente que está perdendo tempo e juros sem direção clara.</p>
+      </div>
+    </div>
+    <div class="behav-insight reveal reveal-delay-3">
+      <span class="behav-insight-label">Perspectiva comportamental</span>
+      <p>
+        Nos dois casos, o problema não é o quanto você ganha. É que ninguém te ensinou a <strong>pensar sobre dinheiro na sua escala</strong> — com filhos, patrimônio crescendo e responsabilidade de longo prazo. A neurociência chama isso de <strong>viés do presente</strong>: nosso cérebro está programado para adiar decisões financeiras importantes em favor do imediato. Não é fraqueza. É biologia. O que muda isso não é força de vontade. É <strong>arquitetura</strong>: um sistema que toma as decisões certas por você, automaticamente.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── Para quem é ── -->
+<section class="para-quem" id="para-quem">
+  <div class="container--narrow">
+    <p class="section-label reveal">Para quem é</p>
+    <h2 class="section-title reveal reveal-delay-1">Esta consultoria é para você <strong>se...</strong></h2>
+    <div class="checklist reveal reveal-delay-2">
+      <div class="checklist-item">
+        <div class="check-icon"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2"/></svg></div>
+        <p>Você tem renda acima de R$ 15 mil mensais e sente que o <strong>resultado financeiro não está à altura</strong> do que você ganha e produz</p>
+      </div>
+      <div class="checklist-item">
+        <div class="check-icon"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2"/></svg></div>
+        <p>Você é casado, tem filhos, e sabe que a <strong>segurança financeira da sua família</strong> depende de decisões que você ainda não tomou</p>
+      </div>
+      <div class="checklist-item">
+        <div class="check-icon"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2"/></svg></div>
+        <p>Você guarda dinheiro, mas não tem certeza se está <strong>investindo certo</strong> — ou sequer se sua família está protegida caso algo mude</p>
+      </div>
+      <div class="checklist-item">
+        <div class="check-icon"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2"/></svg></div>
+        <p>Já tentou planilha, app, curso — e nenhum resolveu porque o problema não era a <strong>ferramenta</strong>, era o sistema por trás dela</p>
+      </div>
+      <div class="checklist-item">
+        <div class="check-icon"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2"/></svg></div>
+        <p>Você quer parar de improvisar e montar um <strong>plano real</strong> — para proteger o que você já tem e crescer o que ainda vai construir</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── Como funciona ── -->
+<section class="como-funciona" id="como-funciona">
+  <div class="container--narrow">
+    <p class="section-label reveal">Como funciona</p>
+    <h2 class="section-title reveal reveal-delay-1">A Reunião Estratégica <strong>Gratuita</strong></h2>
+    <p class="section-sub reveal reveal-delay-2">45 minutos. Sem enrolação. Você sai com um diagnóstico real e um plano de ação — independente de qualquer decisão sobre a consultoria.</p>
+    <div class="etapas reveal reveal-delay-3">
+      <div class="etapa">
+        <div class="etapa-num-wrap">
+          <div class="etapa-num">01</div>
+          <div class="etapa-line"></div>
+        </div>
+        <div class="etapa-content">
+          <h3>Diagnóstico real da sua situação</h3>
+          <p>Analisamos renda, despesas, patrimônio e proteção — mapeando onde estão os vazamentos e as oportunidades que você ainda não enxergou. Sem julgamentos, sem modelos genéricos.</p>
+        </div>
+      </div>
+      <div class="etapa">
+        <div class="etapa-num-wrap">
+          <div class="etapa-num">02</div>
+          <div class="etapa-line"></div>
+        </div>
+        <div class="etapa-content">
+          <h3>Mapeamento dos seus obstáculos reais</h3>
+          <p>Identificamos os padrões comportamentais que estão impedindo sua evolução financeira. Não para te julgar — mas para construir um sistema que funcione para o seu perfil, não para um perfil médio.</p>
+        </div>
+      </div>
+      <div class="etapa">
+        <div class="etapa-num-wrap">
+          <div class="etapa-num">03</div>
+          <div class="etapa-line"></div>
+        </div>
+        <div class="etapa-content">
+          <h3>Plano de ação para a sua família</h3>
+          <p>Você sai com clareza sobre organização, proteção e crescimento patrimonial — e com os próximos passos concretos, independente de continuar com a consultoria.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── Entregas ── -->
+<section class="entregas" id="entregas">
+  <div class="container">
+    <p class="section-label reveal">O que você vai sair sabendo</p>
+    <h2 class="section-title reveal reveal-delay-1">Clareza que você não tem <strong>hoje</strong></h2>
+    <p class="section-sub reveal reveal-delay-2">Ao final da reunião, independente de qualquer decisão:</p>
+    <div class="entregas-grid reveal reveal-delay-3">
+      <div class="entrega-card">
+        <div class="entrega-num">01</div>
+        <h3>Para onde vai o seu dinheiro</h3>
+        <p>Exatamente onde estão os vazamentos e o que fazer diferente a partir dessa semana.</p>
+      </div>
+      <div class="entrega-card">
+        <div class="entrega-num">02</div>
+        <h3>Se sua família está protegida</h3>
+        <p>Quais os pontos cegos de proteção que precisam de atenção agora — antes que o imprevisto aconteça.</p>
+      </div>
+      <div class="entrega-card">
+        <div class="entrega-num">03</div>
+        <h3>Quanto você está perdendo</h3>
+        <p>Em números reais, o custo de não ter um sistema financeiro estruturado na sua escala de renda.</p>
+      </div>
+      <div class="entrega-card">
+        <div class="entrega-num">04</div>
+        <h3>Qual o próximo passo concreto</h3>
+        <p>Para o seu dinheiro finalmente trabalhar por você — com um plano feito para a sua realidade, não para a média.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── Bio ── -->
+<section class="bio" id="sobre">
+  <div class="container">
+    <div class="bio-inner">
+      <div class="bio-avatar-wrap reveal">
+        <div class="bio-avatar-frame">
+          <div class="bio-avatar-initials">RG</div>
+          <div class="bio-avatar-accent"></div>
+        </div>
+        <div class="bio-badge">MDRT Member</div>
+      </div>
+      <div class="bio-content reveal reveal-delay-2">
+        <p class="section-label">Quem vai te ajudar</p>
+        <h2 class="bio-nome">Rafael Garbelini</h2>
+        <p class="bio-cargo">Consultor e Educador Financeiro · MBA em Investimentos</p>
+        <p class="bio-text">
+          Há 6 anos trabalho exclusivamente com famílias de alta renda que ganham bem — mas não têm clareza de para onde o dinheiro vai ou como fazê-lo crescer de forma estruturada.<br><br>
+          Minha abordagem une <strong>finanças comportamentais</strong> com planejamento estratégico. Não trabalho com planilhas genéricas. Trabalho com a pessoa por trás dos números — entendendo os hábitos, os gatilhos e o momento de vida da sua família.<br><br>
+          Sou esposo, pai de duas meninas, e encontrei na consultoria financeira não apenas uma profissão — mas uma missão.
+        </p>
+        <div class="bio-creds">
+          <span class="bio-cred">MBA Investimentos</span>
+          <span class="bio-cred">Certificação Anbima</span>
+          <span class="bio-cred">Certificação Susep</span>
+          <span class="bio-cred">MDRT Member</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── CTA / Formulário ── -->
+<section class="cta-section" id="agendar">
+  <div class="cta-bg"></div>
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-text reveal">
+        <p class="section-label">Próximo passo</p>
+        <h2>Agende sua <strong>Reunião Estratégica Gratuita</strong></h2>
+        <p>Preencha a aplicação ao lado. Suas respostas me ajudam a entender sua situação antes da reunião — garantindo que cada minuto do nosso tempo seja bem aproveitado.</p>
+        <div class="cta-aviso">
+          <p>Atendo um número limitado de famílias por mês. Não por escassez artificial — mas porque consultoria de verdade exige profundidade. <strong>Preencha somente se você estiver pronto para agir.</strong></p>
+        </div>
+      </div>
+      <div class="form-card reveal reveal-delay-2">
+        <h3>Solicitar minha vaga</h3>
+        <p class="form-sub">Reunião de diagnóstico · 45 minutos · 100% gratuita</p>
+        <form id="form-aplicacao" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label for="nome">Nome completo</label>
+            <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+          </div>
+          <div class="form-group">
+            <label for="whatsapp">WhatsApp</label>
+            <input type="tel" id="whatsapp" name="whatsapp" placeholder="(11) 99999-9999" required>
+          </div>
+          <div class="form-group">
+            <label for="renda">Renda mensal aproximada</label>
+            <select id="renda" name="renda" required>
+              <option value="" disabled selected>Selecione</option>
+              <option value="15-20k">R$ 15 mil a R$ 20 mil</option>
+              <option value="20-30k">R$ 20 mil a R$ 30 mil</option>
+              <option value="30-50k">R$ 30 mil a R$ 50 mil</option>
+              <option value="50k+">Acima de R$ 50 mil</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="desafio">Maior desafio financeiro hoje</label>
+            <textarea id="desafio" name="desafio" placeholder="Ex: não consigo fazer o dinheiro sobrar, não sei onde investir, quero proteger minha família..." required></textarea>
+          </div>
+          <button type="submit" class="form-submit">Solicitar minha reunião gratuita</button>
+          <p class="form-lgpd">Ao preencher, você autoriza o tratamento dos seus dados conforme a LGPD (Lei nº 13.709/2018).</p>
+        </form>
+        <div class="form-divider"><span>ou prefere falar direto?</span></div>
+        <a href="https://wa.me/5500000000000?text=Ol%C3%A1%20Rafael%2C%20vi%20seu%20site%20e%20quero%20saber%20mais%20sobre%20a%20consultoria." class="btn-whatsapp" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Conversar pelo WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span class="footer-logo">Rafael <span>Garbelini</span></span>
+      <span class="footer-copy">© 2025 · Todos os direitos reservados</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Trigger hero reveals immediately
+  document.querySelectorAll('.hero .reveal').forEach(el => {
+    setTimeout(() => el.classList.add('visible'), 100);
+  });
+
+  // Phone mask
+  const tel = document.getElementById('whatsapp');
+  if (tel) {
+    tel.addEventListener('input', function() {
+      let v = this.value.replace(/\D/g, '').slice(0, 11);
+      if (v.length >= 7) {
+        v = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
+      } else if (v.length >= 3) {
+        v = '(' + v.slice(0,2) + ') ' + v.slice(2);
+      } else if (v.length >= 1) {
+        v = '(' + v;
+      }
+      this.value = v;
+    });
+  }
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    const nome = document.getElementById('nome').value;
+    const tel = document.getElementById('whatsapp').value;
+    const renda = document.getElementById('renda').value;
+    const desafio = document.getElementById('desafio').value;
+    const msg = encodeURIComponent(
+      `Olá Rafael! Preenchi o formulário do site.\n\nNome: ${nome}\nWhatsApp: ${tel}\nRenda: ${renda}\nDesafio: ${desafio}\n\nGostaria de agendar minha reunião gratuita.`
+    );
+    btn.textContent = 'Redirecionando...';
+    btn.disabled = true;
+    // Substitua o número abaixo pelo seu WhatsApp real (somente números, com DDI)
+    window.open(`https://wa.me/5500000000000?text=${msg}`, '_blank');
+    setTimeout(() => {
+      btn.textContent = 'Solicitação enviada!';
+    }, 1000);
+  }
+</script>
+</body>
+</html>
